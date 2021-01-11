@@ -1,11 +1,12 @@
 console.log("test");
 
 var time = 0;
+var interval;
 
 function increment() {
    // console.log(time);
    if (time >= 10000) {
-      clearInterval(interval);
+      document.get;
       return;
    }
    time += 10;
@@ -23,5 +24,23 @@ function increment() {
    }
 }
 
-// can't do it here, counts too fast?
-// setInterval(increment, 10);
+function reset() {
+   document
+      .querySelectorAll(".digit")
+      .forEach((i) => i.classList.remove("redDigit"));
+   clearInterval(interval);
+   document.querySelector("#secondTens").textContent = 0;
+   document.querySelector("#secondOnes").textContent = 0;
+   document.querySelector("#msHundreds").textContent = 0;
+   document.querySelector("#msTens").textContent = 0;
+   time = 0;
+   interval = null;
+}
+
+function start() {
+   // prevents multiple clicks accelerating time.
+   if (interval != null) {
+      return;
+   }
+   interval = setInterval(increment, 10);
+}
